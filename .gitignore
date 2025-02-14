@@ -3,3 +3,6 @@ wingmanenv/
 
 #Cache
 src/__pycache__/
+
+#vscode
+.vscode/

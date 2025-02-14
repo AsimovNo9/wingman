@@ -1,2 +1,5 @@
 # Python Env
 wingmanenv/
+
+#Cache
+src/__pycache__/

@@ -6,15 +6,28 @@ import smtplib
 import logging
 import socket
 
+import dns.resolver
+
 try:
-    import DNS
-    ServerError = DNS.ServerError
-    DNS.DiscoverNameServers()
-except (ImportError, AttributeError):
+    import dns.resolver
+    DNS = dns.resolver
+except ImportError:
     DNS = None
 
-    class ServerError(Exception):
-        pass
+
+class ServerError(Exception):
+    pass
+
+
+def resolve_domain(domain):
+    if DNS is None:
+        raise ServerError(
+            "DNS resolution unavailable - dns.resolver not installed")
+    try:
+        return DNS.resolve(domain)
+    except DNS.NXDOMAIN:
+        raise ServerError(f"Could not resolve domain: {domain}")
+
 
 # RFC 2822 patterns
 WSP = r'[\s]'

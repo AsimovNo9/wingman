@@ -1,10 +1,12 @@
 from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
 from flask_login import LoginManager
+from flask_socketio import SocketIO
 from os import path
 
 db = SQLAlchemy()
 DB_NAME = "database.db"
+socketio = SocketIO()
 
 
 def create_app():
@@ -12,12 +14,15 @@ def create_app():
     app.config['SECRET_KEY'] = 'flabbergastedattheeffontry'
     app.config['SQLALCHEMY_DATABASE_URI'] = f'sqlite:///{DB_NAME}'
     db.init_app(app)
+    socketio.init_app(app)
 
     from .views import views
     from .auth import auth
+    from .chat import chat
 
     app.register_blueprint(views, url_prefix="/")
     app.register_blueprint(auth, url_prefix="/")
+    app.register_blueprint(chat, url_prefix="/")
 
     from .models import Note, User
 

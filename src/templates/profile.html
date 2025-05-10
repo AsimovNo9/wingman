@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+{% block title %}Wingman{% endblock %}
+
+{% block content %}
+
+<div class="container">
+    <div class="profile-card">
+        <h1 class="profile-card-title">My Profile</h1>
+
+        <div class="profile-image-gallery-section form-group">
+            <h3>My Photos</h3>
+            <div class="gallery-container" id="galleryContainer">
+                <div class="gallery-scroll" id="galleryScroll">
+                    <img src="../static/images/MyPicture.png" alt="User photo" class="gallery-image" width="100px" height="200px">
+                    <img src="../static/images/Asimov.png" alt="User photo" class="gallery-image" width="100px" height="200px">
+                    
+                    <div class="add-image-slot" id="addImageSlot">
+                        <span class="plus-icon">+</span>
+                        <span>Add Photo</span>
+                    </div>
+                    <input type="file" id="galleryImageUpload" accept="image/*" multiple style="display: none;">
+                </div>
+            </div>
+        </div>
+        <div class="profile-summary-section">
+            <h2>Profile Summary</h2>
+            <div id="summaryDisplayContainer" class="form-group">
+                <p id="summaryDisplay">This is a default profile summary. Click edit to change it!</p>
+                <button id="editSummaryBtn" class="btn btn-outline">Edit Summary</button>
+            </div>
+            <div id="summaryEditContainer" class="hidden form-group">
+                <textarea id="summaryEdit" class="form-input">This is a default profile summary. Click edit to change it!</textarea>
+                <div class="summary-buttons-container">
+                    <button id="saveSummaryBtn" class="btn btn-primary">Save</button>
+                    <button id="cancelSummaryBtn" class="btn btn-outline">Cancel</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="../static/js/profile.js"></script>
+
+{% endblock %}
